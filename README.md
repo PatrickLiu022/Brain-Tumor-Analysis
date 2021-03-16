@@ -4,7 +4,7 @@ CSE163 final project, Wi '21
 
 By: Tommy Chung, Patrick Liu, Yi Jin
 
-
+**[Important note for editors](#Important Note)**
 
 #### Purpose:
 
@@ -12,7 +12,7 @@ The purpose of this project is to identify different types of brain tumors throu
 
 #### Approach:
 
-The three main brain tumors we analyzed were meningioma tumors, glioma tumors, and pituitary tumors. We started with a zip file that included a file with images, a file for the tumor masks, and a file for brain tumor labels, all in a numpy array format. In total, there were exactly 3064 images we could work with. Listed below are the steps for our analysis. **To run the analysis, follow the instructions [here](#Instructions)**. **For team members, click [here](#Important Note)**
+The three main brain tumors we analyzed were meningioma tumors, glioma tumors, and pituitary tumors. We started with a zip file that included a file with images, a file for the tumor masks, and a file for brain tumor labels, all in a numpy array format. In total, there were exactly 3064 images we could work with. Listed below are the steps for our analysis. **To run the analysis, follow the instructions [here](#Instructions)**.
 
 - Extract the numpy images, masks, and labels file from zip file using python's built in zip file extractor.
 - Use the pyradiomics library to extract radiomic features and save as a csv file.
