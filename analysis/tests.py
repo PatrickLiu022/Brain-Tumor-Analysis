@@ -21,26 +21,27 @@ def test_extract_zip():
 
 
 def test_extract_feature():
-    test_EF = ExtractFeature(Nan)
-    test_EF._images = test_EF._images[:30]
-    test_EF._masks = test_EF._masks[:30]
-    test_EF._labels = test_EF._labels[:30]
-    features = data.extract_feature(image, masks)
+    test_EF = ExtractFeature(None)
+    test_EF._images = test_EF._images[:10]
+    test_EF._masks = test_EF._masks[:10]
+    test_EF._labels = test_EF._labels[:10]
+    image, labels, masks = test_EF.get_npy()
+    features = test_EF.extract_feature(image, masks)
     features['labels'] = labels
-    assert_equals(30, len(features.index))
-    selected_features = data.feature_selection(features)
-    assert_equals(30, len(selected_features.index))
+    assert_equals(10, len(features.index))
+    selected_features = test_EF.feature_selection(features)
+    assert_equals(10, len(selected_features.index))
 
 
 def test_brain_tumor_features_csv():
     features = pd.read_csv('brain_tumor_features.csv')
     assert_equals(3064, len(features.index))
-    assert_equals(3, features['labels'].unique())
+    assert_equals(3, len(features['labels'].unique()))
 
 
 def main():
     test_extract_zip()
-    test_feature_selection()
+    test_extract_feature()
     test_brain_tumor_features_csv()
 
 if __name__ == '__main__':

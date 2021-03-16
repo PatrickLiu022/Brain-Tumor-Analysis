@@ -11,7 +11,6 @@ from sklearn.feature_selection import VarianceThreshold
 import numpy as np
 
 def main():
-
     DATA_PATH = '../data/brain-tumor.zip'
     run = True
 

@@ -65,6 +65,7 @@ class Plots:
         showing distribution of the feature between the labels, which is
         saved in 'Distribution of {feature_name} between Brain Tumors'.
         """
+        df = df.loc[:,[feature_name, 'labels']]
         sns.boxplot(x='labels', y=feature_name, data=df, showfliers = False)
         plt.xticks([0, 1, 2], ['Meningioma',
                             'Glioma',
