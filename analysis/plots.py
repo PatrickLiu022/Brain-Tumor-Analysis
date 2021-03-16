@@ -139,24 +139,23 @@ class Plots:
 
 
     def plot_tumor_identification(self, image, labels, masks, img_features, img_labels, mlp_model):
-        masks_npy = masks + 1
-        image # image[1]
         i_index = 0
         j_index = 0
-        for i in image_scan: # i is image[1][i]
-            i_index = i
+        for i in image: # i is image[1][i]
             for j in i: # j is image[1][i][j]
-                j_index = j
-                if j != 1:
-                    image[i_index][j_index] = 10000
+                if masks[i_index][j_index] != 1:
+                    image[i_index][j_index] = 5000
+                j_index = 0 if (j_index == 511) else j_index + 1
+            i_index += 1
         new_input_img = img_features.loc[1][0]
         new_input_label = img_labels.loc[1]
         new_input_img = new_input_img.reshape(-1, 1)
         fig, ax = plt.subplots(1, figsize=(10, 10))
-        plt.imshow(image_scan[1], cmap='gray')
+        plt.imshow(image, cmap='gray')
         mask_map = {1: 'Meningioma', 2: 'Glioma', 3: 'Pituitary'}
         mlp_prediction = list(mlp_model.predict(new_input_img))
         actual_title = mask_map[new_input_label]
         prediction = mask_map[mlp_prediction[0]]
 
-        plt.title(f'../plots/Image with {actual_title}. Predicted title was: {prediction}')
+        plt.title(f'Image with {actual_title}. Predicted title was: {prediction}')
+        plt.savefig('../plots/image_with_mlp_prediction')
