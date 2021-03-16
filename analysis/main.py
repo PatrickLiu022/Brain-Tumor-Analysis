@@ -77,11 +77,11 @@ def main():
 
         if user_input != 'n':
             # neural networks training
-            img_features, img_labels, mlp = train.identify_tumor(image, labels, masks)
+            image_scan, img_features, img_labels, mlp = train.identify_tumor(image, labels, masks)
             print('Generating prediction of mask in image and label of true mask')
-            plots.plot_tumor_identification(image, labels, masks, img_features, img_labels, mlp)
+            plots.plot_tumor_identification(image_scan, labels, masks, img_features, img_labels, mlp)
 
-        user_input = input('Would you like to run the model again?: ')
+        user_input = input('Would you like to run the model again? (y/n): ')
         if user_input == 'n':
             run = False
 

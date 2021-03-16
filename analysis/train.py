@@ -130,12 +130,12 @@ class Train:
 
 
   # train
-  def identify_tumor(self, image_npy, label_npy, masks_npy):
+  def identify_tumor(self, image_npy, label_npy, masks_npy, index):
     pd_image_scan = pd.DataFrame(image_npy)
     pd_labels = pd.DataFrame(label_npy)
     pd_masks = pd.DataFrame(masks_npy)
 
-    pd_image_scan['image'] = pd_image_scan[0]
+    pd_image_scan['image'] = pd_image_scan[index]
     pd_image = pd.DataFrame(pd_image_scan['image'])
     arr = []
     for i in range(len(pd_image)):
@@ -164,4 +164,4 @@ class Train:
     print('Training score of predicting tumor label from image:', mlp.score(x_train, y_train))
     print('Testing score of predicting tumor label from image:', mlp.score(x_test, y_test))
 
-    return img_features, img_labels, mlp
+    return image_npy[index], img_features, img_labels, mlp

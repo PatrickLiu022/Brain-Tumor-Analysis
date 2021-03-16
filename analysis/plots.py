@@ -140,13 +140,15 @@ class Plots:
 
     def plot_tumor_identification(self, image, labels, masks, img_features, img_labels, mlp_model):
         masks_npy = masks + 1
-        image_scan = image
-        for i in range(len(image_scan[2])):
-            for j in range(len(image_scan[2][i])):
-                val = masks_npy[i][j]
-                for k in range(len(val)):
-                    if val[k] != 1:
-                        image_scan[i][j][k] = 10000
+        image # image[1]
+        i_index = 0
+        j_index = 0
+        for i in image_scan: # i is image[1][i]
+            i_index = i
+            for j in i: # j is image[1][i][j]
+                j_index = j
+                if j != 1:
+                    image[i_index][j_index] = 10000
         new_input_img = img_features.loc[1][0]
         new_input_label = img_labels.loc[1]
         new_input_img = new_input_img.reshape(-1, 1)
