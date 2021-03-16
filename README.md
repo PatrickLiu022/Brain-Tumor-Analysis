@@ -4,7 +4,7 @@ CSE163 final project, Wi '21
 
 By: Tommy Chung, Patrick Liu, Yi Jin
 
-**[Important note for editors](#Important Note)**
+**[Important note for editors](#Important)**
 
 #### Purpose:
 
@@ -77,6 +77,6 @@ Seaborn: `pip install seaborn`
 
 **And that's it, the plots will save in the plots folder after running so you can view them there.**
 
-# Important Note
+# Important
 
 If you make any modifications to the code, unless you are familiar with git lfs, be sure to delete the contents in the data folder before pushing or things will get messy.
