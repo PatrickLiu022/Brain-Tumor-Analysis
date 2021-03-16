@@ -21,7 +21,7 @@ class ExtractFeature:
     LABELS = '../data/brain_tumor_dataset/labels.npy'
     MASKS = '../data/brain_tumor_dataset/masks.npy'
     if not(path.exists(IMG) or
-       path.exists(LABLES) or
+       path.exists(LABELS) or
        path.exists(MASKS)):
       self._extract_zip(zip_file)
     self._images = np.load(IMG, allow_pickle=True)
