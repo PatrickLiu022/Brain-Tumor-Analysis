@@ -135,7 +135,7 @@ class Train:
     pd_labels = pd.DataFrame(label_npy)
     pd_masks = pd.DataFrame(masks_npy)
 
-    pd_image_scan['image'] = pd_image_scan[index]
+    pd_image_scan['image'] = pd_image_scan[0]
     pd_image = pd.DataFrame(pd_image_scan['image'])
     arr = []
     for i in range(len(pd_image)):
