@@ -1,6 +1,7 @@
 """
 CSE163 Final Project
 Tommy Chung, Patrick Liu, Yi Jin
+
 This file implements and runs functions that are useful to make and
 evaluate Decision Tree Classifier model in classification of three
 types of brain tumor with a csv file of features.
@@ -103,7 +104,9 @@ class Train:
                     max_leaf_nodes=95, random_state=1)
     model.fit(train_x, train_y)
     predictions = model.predict(test_x)
-    print('Accuracy Score: ' + str(accuracy_score(test_y, predictions)))
+    print()
+    print('Accuracy score of predicted tumor labels against true labels:')
+    print(str(accuracy_score(test_y, predictions)))
     return model
 
 
@@ -158,7 +161,7 @@ class Train:
         mlp.fit(x_train, y_train)
       except Warning:
         print('Max iterations (200) reached')
-    print('Training score:', mlp.score(x_train, y_train))
-    print('Testing score:', mlp.score(x_test, y_test))
+    print('Training score of predicting tumor label from image:', mlp.score(x_train, y_train))
+    print('Testing score of predicting tumor label from image:', mlp.score(x_test, y_test))
 
     return img_features, img_labels, mlp

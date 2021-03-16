@@ -1,31 +1,32 @@
 """
 CSE163 Final Project
 Tommy Chung, Patrick Liu, Yi Jin
+
 This file implements and runs functions to load data from
-brain_tumor.zip, extract radiomic feactures, and plot some graphs.
+brain_tumor.zip, extract radiomic feactures, and plot graphs.
 """
 import zipfile
 import numpy as np
 import SimpleITK as sitk
-import matplotlib.pyplot as plt
 import pandas as pd
 from radiomics import featureextractor
 from sklearn.feature_selection import VarianceThreshold
-import os.path
+# import os.path
 from os import path
 
 class ExtractFeature:
 
-
   def __init__(self, zip_file):
-    PATH = './data/'
-    if not(path.exists('../data/brain_tumor_dataset/images.npy') or
-       path.exists('../data/brain_tumor_dataset/lables.npy') or
-       path.exists('../data/brain_tumor_dataset/masks.npy')):
+    IMG = '../data/brain_tumor_dataset/images.npy'
+    LABELS = '../data/brain_tumor_dataset/labels.npy'
+    MASKS = '../data/brain_tumor_dataset/masks.npy'
+    if not(path.exists(IMG) or
+       path.exists(LABLES) or
+       path.exists(MASKS)):
       self._extract_zip(zip_file)
-    self._images = np.load('../data/brain_tumor_dataset/images.npy', allow_pickle=True)
-    self._labels = np.load('../data/brain_tumor_dataset/labels.npy', allow_pickle=True)
-    self._masks = np.load('../data/brain_tumor_dataset/masks.npy', allow_pickle=True)
+    self._images = np.load(IMG, allow_pickle=True)
+    self._labels = np.load(LABELS, allow_pickle=True)
+    self._masks = np.load(MASKS, allow_pickle=True)
 
 
   def get_npy(self):

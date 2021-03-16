@@ -13,7 +13,6 @@ import numpy as np
 def main():
 
     DATA_PATH = '../data/brain-tumor.zip'
-
     run = True
 
     while run:
@@ -43,19 +42,16 @@ def main():
 
             # plots for extract
             plots = Plots(image, labels, masks)
-            print('Generating bar plot ...')
+            print('Generating Tumor Counts plot ...')
             plots.count_each_class()
-            print('Generating image example 1 ...')
+            print('Generating image and mask example 1...')
             plots.compare_images_example(image, masks, labels, 0)
-            print('Generating image example 2 ...')
+            print('Generating image and mask example 2 ...')
             plots.compare_images_example(image, masks, labels, 150)
-            print('Generating image example 3 ...')
+            print('Generating image and mask example 3 ...')
             plots.compare_images_example(image, masks, labels, 1000)
 
-            # if (didnt run extract features):
-            # would you like to run? y, run. n, go to neural networks
             # machine learning
-
             train = Train(high_variance_features)
             plots.draw_correlation(train.get_df())
 
@@ -82,6 +78,7 @@ def main():
         if user_input != 'n':
             # neural networks training
             img_features, img_labels, mlp = train.identify_tumor(image, labels, masks)
+            print('Generating prediction of mask in image and label of true mask')
             plots.plot_tumor_identification(image, labels, masks, img_features, img_labels, mlp)
 
         user_input = input('Would you like to run the model again?: ')
