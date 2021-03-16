@@ -35,9 +35,9 @@ We also made the modules user friendly so users can choose to skip some steps, s
 
 ##### Setup
 
-- First, download the brain tumor zip file from <a href='https://www.kaggle.com/awsaf49/brain-tumor' target='_blank'>Kaggle</a> ![picture](./read_me_pictures/kaggle_download.png)
+- First, download the brain tumor zip file from <a href="https://www.kaggle.com/awsaf49/brain-tumor" target="_blank">Kaggle</a> ![picture](./read_me_pictures/kaggle_download.png)
 
--  <a href='https://help.gnome.org/users/gnome-help/stable/files-rename.html.en' target='_blank'>Change</a> the file name to 'brain-tumor.zip'
+-  <a href="https://help.gnome.org/users/gnome-help/stable/files-rename.html.en" target="_blank">Change</a> the file name to 'brain-tumor.zip'
 
 - Clone the repo and go to the directory by running `cd Brain-Tumor-Analysis`, add the 'brain-tumor.zip' file into the 'data' folder
 
@@ -49,11 +49,11 @@ Because this project uses libraries not included in python, we have to install s
 
 Run the following commands in the new terminal.
 
-First, check the version of python by running`python --version` If your version is less than 3.0, go to <a href='https://www.python.org/downloads/'>here</a> to update.
+First, check the version of python by running`python --version` If your version is less than 3.0, go to <a href="https://www.python.org/downloads/" target="_blank">here</a> to update.
 
-Then check to see if you have pip installed. Pip is the package manager we will be using. Run  `pip --version`. If you get an error message, go to <a href='https://pip.pypa.io/en/stable/installing/'>here</a> to install pip.
+Then check to see if you have pip installed. Pip is the package manager we will be using. Run  `pip --version`. If you get an error message, go to <a href="https://pip.pypa.io/en/stable/installing/" target="_blank">here</a> to install pip.
 
-Then install <a href='https://code.visualstudio.com/download'>VS Code</a>
+Then install <a href="https://code.visualstudio.com/download" target="_blank">VS Code</a>
 
 After this, we can install all the external libraries. Open up VS Here are the commands to run to install them.
 
