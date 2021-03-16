@@ -5,6 +5,7 @@ This file implements and runs functions that are useful to make and
 evaluate Decision Tree Classifier model in classification of three
 types of brain tumor with a csv file of features.
 """
+import warnings
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -16,8 +17,7 @@ from sklearn.metrics import accuracy_score, plot_confusion_matrix
 class Train:
 
   def __init__(self, csv):
-    temp_df = pd.read_csv(csv)
-    self._df = temp_df.loc[:, temp_df.columns != 'Unnamed: 0']  
+    self._df = csv.loc[:, csv.columns != 'Unnamed: 0']  
 
 
   def get_df(self):
@@ -25,11 +25,11 @@ class Train:
 
 
   def get_features(self):
-    return self._df.loc[:, df.columns != 'label']
+    return self._df.loc[:, self._df.columns != 'labels']
 
 
   def get_labels(self):
-    return self._df['label']
+    return self._df['labels']
 
 
   def get_train(self, features, labels):
@@ -39,7 +39,7 @@ class Train:
     return train_x, test_x, train_y, test_y
 
   # train.py
-  def find_max_depth(train_x, train_y, test_x, test_y):
+  def find_max_depth(self, train_x, train_y, test_x, test_y):
     """
     Takes in two training sets and two testing sets. Returns a list
     of accuracies of the model trained by two parameters train_x, and
@@ -56,7 +56,7 @@ class Train:
     return pd.DataFrame(accuracies)
 
   # train
-  def find_max_features(train_x, train_y, test_x, test_y):
+  def find_max_features(self, train_x, train_y, test_x, test_y):
     """
     Takes in two training sets and two testing sets and returns a
     list of accuracies of the model trained by train_x, and train_y
@@ -73,7 +73,7 @@ class Train:
     return pd.DataFrame(accuracies)
 
   # train
-  def find_max_leaf_nodes(train_x, train_y, test_x, test_y):
+  def find_max_leaf_nodes(self, train_x, train_y, test_x, test_y):
     """
     Takes in two training sets and two testing sets and returns a
     list of accuracies of the model trained by train_x, and train_y
@@ -93,7 +93,7 @@ class Train:
 
 
   # train
-  def train_model(train_x, train_y, test_x, test_y):
+  def train_model(self, train_x, train_y, test_x, test_y):
     """
     Takes in two training sets and two testing sets and returns a
     machine learning model trained by train_x, train_y. Test the model
@@ -108,7 +108,7 @@ class Train:
 
 
   # train
-  def plot_feature_importance(model, features):
+  def plot_feature_importance(self, model, features):
     """
     Takes in a machine learning model and the features from the
     pandas data set. Plots the feature importance graph of the given
@@ -127,8 +127,8 @@ class Train:
 
 
   # train
-  def identify_tumor(image_npy, label_npy, masks_npy):
-    pd_image_scan = pd.DataFrame(image_scan)
+  def identify_tumor(self, image_npy, label_npy, masks_npy):
+    pd_image_scan = pd.DataFrame(image_npy)
     pd_labels = pd.DataFrame(label_npy)
     pd_masks = pd.DataFrame(masks_npy)
 
@@ -152,7 +152,12 @@ class Train:
     x_train, x_test, y_train, y_test = train_test_split(img_features, img_labels, test_size=0.3)
     mlp = MLPClassifier(hidden_layer_sizes=(50, 50, 50, 50), random_state=1)
 
-    mlp.fit(x_train, y_train)
+    with warnings.catch_warnings():
+      warnings.filterwarnings('error')
+      try:
+        mlp.fit(x_train, y_train)
+      except Warning:
+        print('Max iterations (200) reached')
     print('Training score:', mlp.score(x_train, y_train))
     print('Testing score:', mlp.score(x_test, y_test))
 

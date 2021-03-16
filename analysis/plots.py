@@ -15,7 +15,7 @@ class Plots:
         self._masks = masks
         
 
-    def draw_correlation(df):
+    def draw_correlation(self, df):
         """
         Takes in a pandas dataframe and draws the correlation of features
         in the dataframe. Saves the plot as correlation.png.
@@ -24,11 +24,11 @@ class Plots:
         plt.plot(figsize=(15, 10))
         sns.heatmap(corr, vmin=-0.5, vmax=0.5, square=True)
         plt.title('Correlation between Features')
-        plt.savefig('correlation.png', bbox_inches='tight')
+        plt.savefig('../plots/correlation.png', bbox_inches='tight')
         plt.close()
 
     # plotting
-    def plot_accuracies(accuracies, name):
+    def plot_accuracies(self, accuracies, name):
         """
         Takes in an accuracy number given by a model prediction and a
         name label. Plots the accuracies of the machine learning model
@@ -40,11 +40,11 @@ class Plots:
         plt.xlabel(name)
         plt.ylabel('Accuracy')
         plt.ylim(0.6, 1)
-        plt.savefig(f'Accuracy_vs_{name}.png', bbox_inches='tight')
+        plt.savefig(f'../plots/Accuracy_vs_{name}.png', bbox_inches='tight')
         plt.close()
 
     # plot
-    def plot_confusion(model, test_x, test_y):
+    def plot_confusion(self, model, test_x, test_y):
         """
         Takes in a machine learning model and two test sets. Plots the
         confusion graph of the given model with the testing sets test_x
@@ -57,22 +57,23 @@ class Plots:
                                 normalize='true',
                                 cmap='Blues')
         matrix.ax_.set_title('Normalized Confusion Matrix')
-        plt.savefig('confusion_matrix.png', bbox_inches='tight')
+        plt.savefig('../plots/confusion_matrix.png', bbox_inches='tight')
         plt.close()
 
     # plot
-    def plot_mean_feature(df, feature_name):
+    def plot_mean_feature(self, df, feature_name):
         """
         Given a dataframe and feature name of existing row, it plots a boxplot
         showing distribution of the feature between the labels, which is
         saved in 'Distribution of {feature_name} between Brain Tumors'.
         """
-        sns.boxplot(x='label', y=feature_name, data=df, showfliers = False)
+        label = 'labels'
+        sns.boxplot(x=label, y=feature_name, data=df, showfliers = False)
         plt.xticks([0, 1, 2], ['Meningioma',
                             'Glioma',
                             'Pituitary'])
         plt.title(f'Distribution of {feature_name} between Brain Tumors')
-        plt.savefig(f'{feature_name}_boxplot_png', bbox_inches='tight')
+        plt.savefig(f'../plots/{feature_name}_boxplot_png', bbox_inches='tight')
         plt.close()
 
 
@@ -90,8 +91,8 @@ class Plots:
                             'Glioma',
                             'Pituitary'])
         plt.title('Number of samples for each label')
-        plt.savefig('counts_bar.png', bbox_inches='tight')
-        plt.close()
+        plt.savefig('../plots/counts_bar.png', bbox_inches='tight')
+        
 
     
     # from extract feature
@@ -106,57 +107,56 @@ class Plots:
         index = starting_index
         while len(example) < 6:
             index += 1
-        if labels[index] == 1:
-            example[0] = images[index]
-            example[1] = masks[index]
-        elif labels[index] == 2:
-            example[2] = images[index]
-            example[3] = masks[index]
-        elif labels[index] == 3:
-            example[4] = images[index]
-            example[5] = masks[index]
+            if labels[index] == 1:
+                example[0] = images[index]
+                example[1] = masks[index]
+            elif labels[index] == 2:
+                example[2] = images[index]
+                example[3] = masks[index]
+            elif labels[index] == 3:
+                example[4] = images[index]
+                example[5] = masks[index]
 
         fig, axs = plt.subplots(nrows=3, ncols=2, figsize=(10,15))
-        image_menin = sitk.GetImageFromArray(example[0], sitk.sitkInt8)
-        axs[0,0].imshow(sitk.GetArrayFromImage(image_menin), cmap="gray")
+        axs[0,0].imshow(example[0], cmap="gray")
         axs[0,0].set_title('Meningioma Tumor Image')
-        mask_menin = sitk.GetImageFromArray(example[1].astype(int))
-        axs[0,1].imshow(sitk.GetArrayFromImage(mask_menin))
+
+        axs[0,1].imshow(example[1])
         axs[0,1].set_title('Meningioma Tumor Mask')
-        image_glio = sitk.GetImageFromArray(example[2], sitk.sitkInt8)
-        axs[1,0].imshow(sitk.GetArrayFromImage(image_glio), cmap="gray")
+
+        axs[1,0].imshow(example[2], cmap="gray")
         axs[1,0].set_title('Glioma Tumor Image')
-        mask_glio = sitk.GetImageFromArray(example[3].astype(int))
-        axs[1,1].imshow(sitk.GetArrayFromImage(mask_glio))
+
+        axs[1,1].imshow(example[3])
         axs[1,1].set_title('Glioma Tumor Mask')
-        image_pitu = sitk.GetImageFromArray(example[4], sitk.sitkInt8)
-        axs[2,0].imshow(sitk.GetArrayFromImage(image_pitu), cmap="gray")
+
+        axs[2,0].imshow(example[4], cmap="gray")
         axs[2,0].set_title('Pituitary Tumor Mask')
-        mask_pitu = sitk.GetImageFromArray(example[5].astype(int))
-        axs[2,1].imshow(sitk.GetArrayFromImage(mask_pitu))
+
+        axs[2,1].imshow(example[5])
         axs[2,1].set_title('Pituitary Tumor Mask')
 
-        plt.savefig(f'compare_tumors_{starting_index}.png', bbox_inches='tight')
+        plt.savefig(f'../plots/compare_tumors_{starting_index}.png', bbox_inches='tight')
         plt.close()
 
 
-    def plot_tumor_identification(self, image, labels, masks, img_feautres, img_labels, model):
+    def plot_tumor_identification(self, image, labels, masks, img_features, img_labels, mlp_model):
         masks_npy = masks + 1
         image_scan = image
-        for i in range(len(image_scan_1[2])):
-            for j in range(len(image_scan_1[2][i])):
-                val = masks_npy_1[i][j]
+        for i in range(len(image_scan[2])):
+            for j in range(len(image_scan[2][i])):
+                val = masks_npy[i][j]
                 for k in range(len(val)):
                     if val[k] != 1:
-                        image_scan_1[i][j][k] = 10000
+                        image_scan[i][j][k] = 10000
         new_input_img = img_features.loc[1][0]
         new_input_label = img_labels.loc[1]
         new_input_img = new_input_img.reshape(-1, 1)
         fig, ax = plt.subplots(1, figsize=(10, 10))
-        plt.imshow(image_scan_1[1], cmap='gray')
+        plt.imshow(image_scan[1], cmap='gray')
         mask_map = {1: 'Meningioma', 2: 'Glioma', 3: 'Pituitary'}
-        mlp_prediction = list(mlp.predict(new_input_img))
+        mlp_prediction = list(mlp_model.predict(new_input_img))
         actual_title = mask_map[new_input_label]
         prediction = mask_map[mlp_prediction[0]]
 
-        plt.title(f'Image with {actual_title}. Predicted title was: {prediction}')
+        plt.title(f'../plots/Image with {actual_title}. Predicted title was: {prediction}')

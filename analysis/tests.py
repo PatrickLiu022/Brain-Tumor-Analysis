@@ -15,11 +15,9 @@ from os import path
 
 def test_extract_zip():
     assert_equals(True, path.exists('../data'))
-    assert_equals(True, path.exists('../data/brain_tumor_dataset'))
-    # assert_equals(True, path.exists('../data/brain-tumor.zip'))
-    # assert_equals(True, path.exists('../data/brain_tumor_dataset/labels.npy'))
-    # assert_equals(True, path.exists('../data/brain_tumor_dataset/images.npy'))
-    # assert_equals(True, path.exists('../data/brain_tumor_dataset/masks.npy'))
+    assert_equals(True, path.exists('../data/brain_tumor_dataset/labels.npy'))
+    assert_equals(True, path.exists('../data/brain_tumor_dataset/images.npy'))
+    assert_equals(True, path.exists('../data/brain_tumor_dataset/masks.npy'))
 
 def main():
     test_extract_zip()

@@ -18,7 +18,7 @@ class ExtractFeature:
 
 
   def __init__(self, zip_file):
-    PATH = '../data/'
+    PATH = './data/'
     if not(path.exists('../data/brain_tumor_dataset/images.npy') or
        path.exists('../data/brain_tumor_dataset/lables.npy') or
        path.exists('../data/brain_tumor_dataset/masks.npy')):
@@ -71,6 +71,6 @@ class ExtractFeature:
     # drop all columns with Nan value
     df = df.dropna(axis='columns')
     sel = VarianceThreshold(threshold=(.8 * (1 - .8)))
-    sel.fit_transform(df, y=df['label'])
+    sel.fit_transform(df, y=df['labels'])
     df = df[df.columns[sel.get_support(indices=True)]]
     return df
