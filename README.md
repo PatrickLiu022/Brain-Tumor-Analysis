@@ -1,6 +1,6 @@
 # Brain-Tumor-Analysis
 
-CSE163 final project, Wi '21
+CSE163 final project, Wi '21 
 
 By: Tommy Chung, Patrick Liu, Yi Jin
 
