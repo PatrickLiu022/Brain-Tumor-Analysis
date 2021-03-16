@@ -12,7 +12,7 @@ The purpose of this project is to identify different types of brain tumors throu
 
 #### Approach:
 
-The three main brain tumors we analyzed were meningioma tumors, glioma tumors, and pituitary tumors. We started with a zip file that included a file with images, a file for the tumor masks, and a file for brain tumor labels, all in a numpy array format. In total, there were exactly 3064 images we could work with. Listed below are the steps for our analysis. **To run the analysis, follow the instructions  [here](#Instructions)**
+The three main brain tumors we analyzed were meningioma tumors, glioma tumors, and pituitary tumors. We started with a zip file that included a file with images, a file for the tumor masks, and a file for brain tumor labels, all in a numpy array format. In total, there were exactly 3064 images we could work with. Listed below are the steps for our analysis. **To run the analysis, follow the instructions [here](#Instructions)**. **For team members, click [here](#Important Note)**
 
 - Extract the numpy images, masks, and labels file from zip file using python's built in zip file extractor.
 - Use the pyradiomics library to extract radiomic features and save as a csv file.
@@ -39,7 +39,7 @@ We also made the modules user friendly so users can choose to skip some steps, s
 
 -  <a href="https://help.gnome.org/users/gnome-help/stable/files-rename.html.en" target="_blank">Change</a> the file name to 'brain-tumor.zip'
 
-- Clone the repo and go to the directory by running `cd Brain-Tumor-Analysis`, add the 'brain-tumor.zip' file into the 'data' folder
+- Clone the repo if you haven't already and go to the directory by running `cd Brain-Tumor-Analysis`, add the 'brain-tumor.zip' file into the 'data' folder
 
   ![move zip file to data folder](./read_me_pictures/move_file.png)
 
@@ -71,6 +71,12 @@ Seaborn: `pip install seaborn`
 
 ##### Running the program
 
-​	To run the program, go to the analysis directory by running `cd Brain-Tumor_Analysis` to go into the cloned repository and then cd `analysis` to go into the analysis folder. Then, type `open .` and open the file in VS Code. Lastly, click the green run button in the top left. ![run button](./read_me_pictures/run_button.png) 
+​	To run the program, go to the analysis directory by running `cd Brain-Tumor_Analysis` to go into the cloned repository and then cd `analysis` to go into the analysis folder. Then, type `open .` and open the file in VS Code. Lastly, click the green run button in the top left. 
+
+![run button](./read_me_pictures/run_button.png) 
 
 **And that's it, the plots will save in the plots folder after running so you can view them there.**
+
+# Important Note:
+
+If you make any modifications to the code, unless you are familiar with git lfs, be sure to delete the contents in the data folder before pushing or things will get messy.
