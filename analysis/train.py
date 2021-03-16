@@ -126,7 +126,7 @@ class Train:
     f_importance = f_importance[f_importance['Importance'] >= 0.05]
     sns.barplot(x=f_importance['Importance'] , y=f_importance['Name'])
     plt.title('Feature Importances')
-    plt.savefig('feature_importance.png', bbox_inches='tight')
+    plt.savefig('../plots/feature_importance.png', bbox_inches='tight')
 
 
   # train
