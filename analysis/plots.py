@@ -65,13 +65,12 @@ class Plots:
         showing distribution of the feature between the labels, which is
         saved in 'Distribution of {feature_name} between Brain Tumors'.
         """
-        label = 'labels'
-        sns.boxplot(x=label, y=feature_name, data=df, showfliers = False)
+        sns.boxplot(x='labels', y=feature_name, data=df, showfliers = False)
         plt.xticks([0, 1, 2], ['Meningioma',
                             'Glioma',
                             'Pituitary'])
         plt.title(f'Distribution of {feature_name} between Brain Tumors')
-        plt.savefig(f'../plots/{feature_name}_boxplot_png', bbox_inches='tight')
+        plt.savefig(f'../plots/{feature_name}_boxplot.png', bbox_inches='tight')
         plt.close()
 
 
@@ -90,6 +89,7 @@ class Plots:
                             'Pituitary'])
         plt.title('Number of samples for each label')
         plt.savefig('../plots/counts_bar.png', bbox_inches='tight')
+        plt.close()
         
 
     
@@ -159,3 +159,4 @@ class Plots:
 
         plt.title(f'Image with {actual_title}. Predicted title was: {prediction}')
         plt.savefig('../plots/image_with_mlp_prediction')
+        plt.close()
