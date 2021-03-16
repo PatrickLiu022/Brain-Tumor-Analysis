@@ -35,17 +35,17 @@ We also made the modules user friendly so users can choose to skip some steps, s
 
 ##### Setup
 
-- First, download the brain tumor zip file from [kaggle](https://www.kaggle.com/awsaf49/brain-tumor)![picture](/Users/patrickliu/Desktop/kaggle_download.png)
+- First, download the brain tumor zip file from [kaggle](https://www.kaggle.com/awsaf49/brain-tumor)![picture](./read_me_pictures/kaggle_download.png)
 
 -  [Change](https://help.gnome.org/users/gnome-help/stable/files-rename.html.en) the file name to 'brain-tumor.zip'
 
 - Clone the repo and go to the directory by running `cd Brain-Tumor-Analysis`, add the 'brain-tumor.zip' file into the 'data' folder
 
-  ![move zip file to data folder](/Users/patrickliu/Desktop/move_file.png)
+  ![move zip file to data folder](./read_me_pictures/move_file.png)
 
 ##### Installing external libraries
 
-Because this project uses libraries not included in python, we have to install some. Here is the list of commands to run to be able to run the project. Open up VS Code, and open a new terminal. ![open new terminal](/Users/patrickliu/Desktop/new_terminal.png)
+Because this project uses libraries not included in python, we have to install some. Here is the list of commands to run to be able to run the project. Open up VS Code, and open a new terminal. ![open new terminal](./read_me_pictures/new_terminal.png)
 
 Run the following commands in the new terminal.
 
@@ -71,6 +71,6 @@ Seaborn: `pip install seaborn`
 
 ##### Running the program
 
-​	To run the program, go to the analysis directory by running `cd Brain-Tumor_Analysis` to go into the cloned repository and then cd `analysis` to go into the analysis folder. Then, type `open .` and open the file in VS Code. Lastly, click the green run button in the top left. ![run button](/Users/patrickliu/Desktop/run_button.png) 
+​	To run the program, go to the analysis directory by running `cd Brain-Tumor_Analysis` to go into the cloned repository and then cd `analysis` to go into the analysis folder. Then, type `open .` and open the file in VS Code. Lastly, click the green run button in the top left. ![run button](./read_me_pictures/run_button.png) 
 
 And that's it, the plots will save in the plots folder after running so you can view them there.
