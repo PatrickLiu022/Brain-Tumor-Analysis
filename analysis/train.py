@@ -47,7 +47,7 @@ class Train:
     max depth ranging from 1 to 30.
     """
     accuracies = []
-    for i in range(1, 30):
+    for i in range(1, 31):
       model = DecisionTreeClassifier(max_depth=i, random_state=1)
       model.fit(train_x, train_y)
       pred_test = model.predict(test_x)
@@ -80,7 +80,7 @@ class Train:
     and tested by test_x, test_y with max leaf node from 5 to 200.
     """
     accuracies = []
-    for i in range(1, 40):
+    for i in range(1, 41):
       model = DecisionTreeClassifier(max_depth=9, max_features=64,
                       max_leaf_nodes=(i * 5),
                       random_state=1)
