@@ -31,10 +31,6 @@ The three main brain tumors we analyzed were meningioma tumors, glioma tumors, a
 
 We also made the modules user friendly so users can choose to skip some steps, such as extracting features , if they already ran the program once. This will allow the user to save some time.
 
-# Important Note:
-
-If you make any modifications to the code, unless you are familiar with git lfs, be sure to delete the contents in the data folder before pushing or things will get messy.
-
 # Instructions
 
 ##### Setup
@@ -80,3 +76,7 @@ Seaborn: `pip install seaborn`
 ![run button](./read_me_pictures/run_button.png) 
 
 **And that's it, the plots will save in the plots folder after running so you can view them there.**
+
+# Important Note
+
+If you make any modifications to the code, unless you are familiar with git lfs, be sure to delete the contents in the data folder before pushing or things will get messy.
