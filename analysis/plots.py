@@ -8,10 +8,9 @@ analysis.
 
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.neural_network import MLPClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import accuracy_score, plot_confusion_matrix
+from sklearn.metrics import plot_confusion_matrix
 import numpy as np
+
 
 class Plots:
 
@@ -27,7 +26,6 @@ class Plots:
         self._image = image
         self._labels = labels
         self._masks = masks
-        
 
     def draw_correlation(self, df):
         """
@@ -63,11 +61,11 @@ class Plots:
         and test_y. Save it in the confusion_matrix.png.
         """
         matrix = plot_confusion_matrix(model, test_x, test_y,
-                        display_labels=['Meningioma',
-                                'Glioma',
-                                'Pituitary'],
-                                normalize='true',
-                                cmap='Blues')
+                                       display_labels=['Meningioma',
+                                                       'Glioma',
+                                                       'Pituitary'],
+                                       normalize='true',
+                                       cmap='Blues')
         matrix.ax_.set_title('Normalized Confusion Matrix')
         plt.savefig('../plots/confusion_matrix.png', bbox_inches='tight')
         plt.close()
@@ -78,15 +76,16 @@ class Plots:
         showing distribution of the feature between the labels, which is
         saved in 'Distribution of {feature_name} between Brain Tumors'.
         """
-        df = df.loc[:,[feature_name, 'labels']]
-        sns.boxplot(x='labels', y=feature_name, data=df, showfliers = False)
+        df = df.loc[:, [feature_name, 'labels']]
+        sns.boxplot(x='labels', y=feature_name, data=df, showfliers=False)
         plt.xticks([0, 1, 2], ['Meningioma',
-                            'Glioma',
-                            'Pituitary'])
+                               'Glioma',
+                               'Pituitary'])
         plt.title(f'Distribution of {feature_name} between Brain Tumors')
-        plt.savefig(f'../plots/{feature_name}_boxplot.png', bbox_inches='tight')
+        plt.savefig(
+          f'../plots/{feature_name}_boxplot.png', bbox_inches='tight'
+          )
         plt.close()
-
 
     def count_each_class(self):
         """
@@ -96,14 +95,14 @@ class Plots:
         "counts_bar.png"
         """
         each_label, counts = np.unique(self._labels, return_counts=True)
-        plt.figure(figsize=(10,6))
+        plt.figure(figsize=(10, 6))
         plt.bar(each_label, counts, tick_label=['Meningioma',
-                            'Glioma',
-                            'Pituitary'])
+                                                'Glioma',
+                                                'Pituitary'])
         plt.title('Number of samples for each label')
         plt.savefig('../plots/counts_bar.png', bbox_inches='tight')
         plt.close()
-        
+
     def compare_images_example(self, images, masks, labels, starting_index):
         """
         Takes in three numpy files containing the brain scans, tumor masks,
@@ -125,34 +124,37 @@ class Plots:
                 example[4] = images[index]
                 example[5] = masks[index]
 
-        fig, axs = plt.subplots(nrows=3, ncols=2, figsize=(10,15))
-        axs[0,0].imshow(example[0], cmap="gray")
-        axs[0,0].set_title('Meningioma Tumor Image')
+        fig, axs = plt.subplots(nrows=3, ncols=2, figsize=(10, 15))
+        axs[0, 0].imshow(example[0], cmap="gray")
+        axs[0, 0].set_title('Meningioma Tumor Image')
 
-        axs[0,1].imshow(example[1])
-        axs[0,1].set_title('Meningioma Tumor Mask')
+        axs[0, 1].imshow(example[1])
+        axs[0, 1].set_title('Meningioma Tumor Mask')
 
-        axs[1,0].imshow(example[2], cmap="gray")
-        axs[1,0].set_title('Glioma Tumor Image')
+        axs[1, 0].imshow(example[2], cmap="gray")
+        axs[1, 0].set_title('Glioma Tumor Image')
 
-        axs[1,1].imshow(example[3])
-        axs[1,1].set_title('Glioma Tumor Mask')
+        axs[1, 1].imshow(example[3])
+        axs[1, 1].set_title('Glioma Tumor Mask')
 
-        axs[2,0].imshow(example[4], cmap="gray")
-        axs[2,0].set_title('Pituitary Tumor Mask')
+        axs[2, 0].imshow(example[4], cmap="gray")
+        axs[2, 0].set_title('Pituitary Tumor Mask')
 
-        axs[2,1].imshow(example[5])
-        axs[2,1].set_title('Pituitary Tumor Mask')
+        axs[2, 1].imshow(example[5])
+        axs[2, 1].set_title('Pituitary Tumor Mask')
 
-        plt.savefig(f'../plots/compare_tumors_{starting_index}.png', bbox_inches='tight')
+        plt.savefig(
+          f'../plots/compare_tumors_{starting_index}.png', bbox_inches='tight'
+          )
         plt.close()
 
-
-    def plot_tumor_identification(self, image, labels, masks, img_features, img_labels, mlp_model):
+    def plot_tumor_identification(
+      self, image, labels, masks, img_features, img_labels, mlp_model):
         """
-        Takes in one image, the corresponding labels, mask, features, and label, and a neural
-        network model. Identifies the tumor region and highlights in white and predicts the given
-        image's tumor label. Plots the image with the title of the true label to the predicted one.
+        Takes in one image, the corresponding labels, mask, features,
+        and label, and a neural network model. Identifies the tumor region
+        and highlights in white and predicts the given image's tumor label.
+        Plots the image with the title of the true label to the predicted one.
         """
         i_index = 0
         j_index = 0
@@ -172,6 +174,7 @@ class Plots:
         actual_title = mask_map[new_input_label]
         prediction = mask_map[mlp_prediction[0]]
 
-        plt.title(f'Image with {actual_title}. Predicted title was: {prediction}')
+        plt.title(
+          f'Image with {actual_title}. Predicted title was: {prediction}')
         plt.savefig('../plots/image_with_mlp_prediction')
         plt.close()

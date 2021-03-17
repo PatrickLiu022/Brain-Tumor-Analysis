@@ -71,7 +71,7 @@ Seaborn: `pip install seaborn`
 
 ##### Running the program
 
-​	To run the program, go to the analysis directory by running `cd Brain-Tumor_Analysis` to go into the cloned repository and then cd `analysis` to go into the analysis folder. Then, type `open .` and open the file in VS Code. Lastly, click the green run button in the top left. 
+​	To run the program, go to the analysis directory by running `cd Brain-Tumor_Analysis` to go into the cloned repository and then cd `analysis` to go into the analysis folder. Then, type `open .` and open the `main.py` in VS Code. Lastly, make sure you are still in the `analysis` directory and click the green run button in the top left. 
 
 ![run button](./read_me_pictures/run_button.png) 
 

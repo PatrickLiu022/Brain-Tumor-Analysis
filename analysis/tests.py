@@ -6,18 +6,9 @@ This file test the feature extraction and dataframe length
 to ensure our train and plotting runs smoothly
 """
 
-import zipfile
-import numpy as np
-import SimpleITK as sitk
-import matplotlib.pyplot as plt
 import pandas as pd
-from radiomics import featureextractor
-from sklearn.feature_selection import VarianceThreshold
-from plots import Plots
-from train import Train
 from extract_feature import ExtractFeature
 from cse163_utils import assert_equals
-import os.path
 from os import path
 
 
@@ -61,6 +52,7 @@ def main():
     test_extract_zip()
     test_extract_feature()
     test_brain_tumor_features_csv()
+
 
 if __name__ == '__main__':
     main()
