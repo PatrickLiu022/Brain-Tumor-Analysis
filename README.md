@@ -39,7 +39,9 @@ We also made the modules user friendly so users can choose to skip some steps, s
 
 -  <a href="https://help.gnome.org/users/gnome-help/stable/files-rename.html.en" target="_blank">Change</a> the file name to 'brain-tumor.zip'
 
-- Clone the repo if you haven't already and go to the directory by running `cd Brain-Tumor-Analysis`, add the 'brain-tumor.zip' file into the 'data' folder
+- Clone the repo with `git clone https://github.com/PatrickLiu022/Brain-Tumor-Analysis.git`
+
+- Go to the directory by running `cd Brain-Tumor-Analysis`, add the 'brain-tumor.zip' file into the 'data' folder
 
   ![move zip file to data folder](./read_me_pictures/move_file.png)
 
