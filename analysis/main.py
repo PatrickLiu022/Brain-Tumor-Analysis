@@ -1,3 +1,12 @@
+"""
+CSE163 Final Project
+Tommy Chung, Patrick Liu, Yi Jin
+
+This file performs machine learning and deep learing to predict
+brain tumor labels to their true labels and provides visualizations
+for the analysis.
+"""
+
 from plots import Plots
 from train import Train
 from extract_feature import ExtractFeature
@@ -24,7 +33,7 @@ def main():
             # load data
             data = ExtractFeature(DATA_PATH)
             image, labels, masks = data.get_npy()
-            features = data.extract_feature(image, masks) # <= this takes a REALLY long time, approx 3 minutes and 30 seconds
+            features = data.extract_feature(image, masks)
             features['labels'] = labels
             df = data.feature_selection(features)
             df.to_csv('brain_tumor_features.csv')

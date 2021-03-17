@@ -11,12 +11,20 @@ import SimpleITK as sitk
 import pandas as pd
 from radiomics import featureextractor
 from sklearn.feature_selection import VarianceThreshold
-# import os.path
 from os import path
 
 class ExtractFeature:
 
+  """
+  This class performs zip file extraction, numpy data loading,
+  and radiomic feature extraction.
+  """
+
   def __init__(self, zip_file):
+    """
+    Takes in a zip file and unzips to extract the
+    numpy files
+    """
     IMG = '../data/brain_tumor_dataset/images.npy'
     LABELS = '../data/brain_tumor_dataset/labels.npy'
     MASKS = '../data/brain_tumor_dataset/masks.npy'
@@ -30,9 +38,11 @@ class ExtractFeature:
 
 
   def get_npy(self):
+    """
+    Returns the numpy image, labels, and masks files.
+    """
     return self._images, self._labels, self._masks
 
-  # extracting file, stays in this class
   def _extract_zip(self, file):
     """
     Takes in a file with the zip extension and unzips it
@@ -42,7 +52,6 @@ class ExtractFeature:
       zip_ref.extractall('../data')
     zip_ref.close()
 
-  # extract
   def extract_feature(self, images, masks):
     """
     Takes in three numpy files containing the brain scans, tumor masks.
@@ -61,15 +70,12 @@ class ExtractFeature:
     df = pd.DataFrame(list_features, columns=features.keys())
     return df
 
-  # extracts, stays here
   def feature_selection(self, df):
     """
     Takes in a numpy dataframe. Returns the selected features in df
     with high variance.
     """
-    # change non-numeric values to Nan
     df = df.apply(pd.to_numeric, errors='coerce')
-    # drop all columns with Nan value
     df = df.dropna(axis='columns')
     sel = VarianceThreshold(threshold=(.8 * (1 - .8)))
     sel.fit_transform(df, y=df['labels'])

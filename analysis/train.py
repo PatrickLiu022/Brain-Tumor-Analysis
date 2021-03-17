@@ -17,29 +17,53 @@ from sklearn.metrics import accuracy_score, plot_confusion_matrix
 
 class Train:
 
+  """
+  This class use machine learning and neural network models
+  to train to predict brain tumor labels against their true
+  labels. Model accuracy is also analyzed here by plotting
+  accuracy differences between different hyperparameter
+  specifications.
+  """
+
   def __init__(self, csv):
+    """
+    Takes in and stores a csv file and removes unecessary columns
+    """
     self._df = csv.loc[:, csv.columns != 'Unnamed: 0']  
 
 
   def get_df(self):
+    """
+    Returns the data frame.
+    """
     return self._df
 
 
   def get_features(self):
+    """
+    Returns the radiomic features in the data frame.
+    """
     return self._df.loc[:, self._df.columns != 'labels']
 
 
   def get_labels(self):
+    """
+    Returns the tumor identification labels
+    """
     return self._df['labels']
 
 
   def get_train(self, features, labels):
+    """
+    Takes in a dataframe of features and labels and splits them
+    up into into two train and two test variables, 70% for train and
+    30% for test. Returns the train and test data.
+    """
     train_x,test_x,train_y,test_y = train_test_split(features, labels,
                                                       test_size = 0.3,
                                                       random_state=25)
     return train_x, test_x, train_y, test_y
 
-  # train.py
   def find_max_depth(self, train_x, train_y, test_x, test_y):
     """
     Takes in two training sets and two testing sets. Returns a list
@@ -56,7 +80,6 @@ class Train:
       accuracies.append({'max depth': i, 'test accuracy': test_acc})
     return pd.DataFrame(accuracies)
 
-  # train
   def find_max_features(self, train_x, train_y, test_x, test_y):
     """
     Takes in two training sets and two testing sets and returns a
@@ -73,7 +96,6 @@ class Train:
       accuracies.append({'max features': i, 'test accuracy': test_acc})
     return pd.DataFrame(accuracies)
 
-  # train
   def find_max_leaf_nodes(self, train_x, train_y, test_x, test_y):
     """
     Takes in two training sets and two testing sets and returns a
@@ -93,7 +115,6 @@ class Train:
     return pd.DataFrame(accuracies)
 
 
-  # train
   def train_model(self, train_x, train_y, test_x, test_y):
     """
     Takes in two training sets and two testing sets and returns a
@@ -110,7 +131,6 @@ class Train:
     return model
 
 
-  # train
   def plot_feature_importance(self, model, features):
     """
     Takes in a machine learning model and the features from the
@@ -130,8 +150,15 @@ class Train:
     plt.close()
 
 
-  # train
   def identify_tumor(self, image_npy, label_npy, masks_npy, index):
+    """
+    Takes in the image, labels, and masks numpy file and an index between
+    1 and 3064. Collapses the image file and divides by a constant to set up
+    the data for neural networks training. Give the model 4 layers with 50 nodes
+    each, and train the data. If max iterations error is thrown, print the error.
+    Print the accuracy of training and testing and return the image at the specified
+    index, image features, image labels, and the model.
+    """
     pd_image_scan = pd.DataFrame(image_npy)
     pd_labels = pd.DataFrame(label_npy)
     pd_masks = pd.DataFrame(masks_npy)

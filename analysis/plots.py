@@ -1,3 +1,11 @@
+"""
+CSE163 Final Project
+Tommy Chung, Patrick Liu, Yi Jin
+
+This file plots the visualizations for the radiomic
+analysis.
+"""
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.neural_network import MLPClassifier
@@ -7,7 +15,15 @@ import numpy as np
 
 class Plots:
 
+    """
+    This class plots the relationship between radiomic features
+    and machine learning accuracies.
+    """
+
     def __init__(self, image, labels, masks):
+        """
+        Stores the image, labels, and masks files.
+        """
         self._image = image
         self._labels = labels
         self._masks = masks
@@ -25,7 +41,6 @@ class Plots:
         plt.savefig('../plots/correlation.png', bbox_inches='tight')
         plt.close()
 
-    # plotting
     def plot_accuracies(self, accuracies, name):
         """
         Takes in an accuracy number given by a model prediction and a
@@ -41,7 +56,6 @@ class Plots:
         plt.savefig(f'../plots/Accuracy_vs_{name}.png', bbox_inches='tight')
         plt.close()
 
-    # plot
     def plot_confusion(self, model, test_x, test_y):
         """
         Takes in a machine learning model and two test sets. Plots the
@@ -58,7 +72,6 @@ class Plots:
         plt.savefig('../plots/confusion_matrix.png', bbox_inches='tight')
         plt.close()
 
-    # plot
     def plot_mean_feature(self, df, feature_name):
         """
         Given a dataframe and feature name of existing row, it plots a boxplot
@@ -75,7 +88,6 @@ class Plots:
         plt.close()
 
 
-    # from extract_feature
     def count_each_class(self):
         """
         Takes the labels in the from the `labels` files and plots
@@ -92,9 +104,6 @@ class Plots:
         plt.savefig('../plots/counts_bar.png', bbox_inches='tight')
         plt.close()
         
-
-    
-    # from extract feature
     def compare_images_example(self, images, masks, labels, starting_index):
         """
         Takes in three numpy files containing the brain scans, tumor masks,
@@ -140,10 +149,15 @@ class Plots:
 
 
     def plot_tumor_identification(self, image, labels, masks, img_features, img_labels, mlp_model):
+        """
+        Takes in one image, the corresponding labels, mask, features, and label, and a neural
+        network model. Identifies the tumor region and highlights in white and predicts the given
+        image's tumor label. Plots the image with the title of the true label to the predicted one.
+        """
         i_index = 0
         j_index = 0
-        for i in image: # i is image[1][i]
-            for j in i: # j is image[1][i][j]
+        for i in image:
+            for j in i:
                 if masks[i_index][j_index] != 1:
                     image[i_index][j_index] = 5000
                 j_index = 0 if (j_index == 511) else j_index + 1
